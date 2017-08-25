@@ -1,0 +1,8 @@
+" airline 状态栏
+" 需要安装补丁字体 powerline/fonts
+set laststatus=2
+set t_Co=256
+let g:airline_powerline_fonts=1
+let g:airline_theme='bubblegum'
+"let g:airline_left_sep='>'
+

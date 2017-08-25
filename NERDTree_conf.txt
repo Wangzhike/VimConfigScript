@@ -1,0 +1,5 @@
+" 文件树 nerdtredd
+" close vim if the only window left open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeMinimalUI=1		" 不显示项目树上的额外信息，例如帮助，提示什么的
+
