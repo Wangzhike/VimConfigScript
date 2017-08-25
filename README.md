@@ -13,7 +13,7 @@
 **注：表格上的适用环境都已经过验证！**
 
 无图无真相，最终的效果见下图：
-![Vim](https://github.com/Wangzhike/VimConfigScript/blob/master/Ubuntu%20Vim.png)
+![Vim](https://github.com/Wangzhike/VimConfigScript/raw/master/Ubuntu%20Vim.png)
 
 # 安装
 ## 克隆脚本
