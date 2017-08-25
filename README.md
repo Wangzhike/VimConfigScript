@@ -5,15 +5,15 @@
 所以配置Vim的过程踩了许多坑，第一个就是卸载这个tiny版本的vim，安装完整的vim，之后是在自己的HOME目录建立自己的配置文件*.vimrc*，以及添加显示行号，语法高亮等基本配置，再到后面知道可以用Vundle插件管理工具安装各种插件，用Vim打造出类似IDE的开发环境......，不断往*.vimrc*中添加各种配置，折腾起来就是大半天，而且换台机器，还得重新来一次，简直是累觉不爱。
 最近在看shell编程，就萌生出写一个自动化脚本，完成在一个新的Ubuntu系统的机器上Vim的配置及插件安装工作，经过几天的努力，终于这个小脚本诞生了！
 
-<!--more-->
 
 |	适用环境	|	脚本地址	|
 |	:------:	|	:------:	|
 | Ubuntu		|	https://github.com/Wangzhike/VimConfigScript			|
+
 **注：表格上的适用环境都已经过验证！**
 
 无图无真相，最终的效果见下图：
-![Vim](/images/Ubuntu Vim.png)
+![Vim](https://github.com/Wangzhike/VimConfigScript/blob/master/Ubuntu%20Vim.png)
 
 # 安装
 ## 克隆脚本
@@ -36,14 +36,14 @@ $ cd VimConfigScript
 ```
 2. 执行脚本`configVim.sh`
 目前脚本支持三种命令行参数：
- - `./configVim.sh -all`或`./configVim.sh`
+ - `./configVim.sh -all`或`./configVim.sh`    
  会安装上面提到的所有插件
- - `./configVim.sh -s [Plugin1] [Plugin2] ... [PluginN]`
+ - `./configVim.sh -s [Plugin1] [Plugin2] ... [PluginN]`    
  会安装`-s`后面指定的插件，插件名字之间以空格分隔
- - `./configVim.sh -v [Plugin1] [Plugin2] ... [PluginN]`
- 除了`-v`后面指定的插件外，安装上面提到的所有插件
- 注：
- 插件名称列表如下：
+ - `./configVim.sh -v [Plugin1] [Plugin2] ... [PluginN]`    
+ 除了`-v`后面指定的插件外，安装上面提到的所有插件  
+ 
+ **注：插件名称列表如下：**
   - YouCompleteMe
   - Syntasitic
   - SimplyFold
