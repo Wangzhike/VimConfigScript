@@ -60,4 +60,4 @@ $ cd VimConfigScript
 	$ ./configVim.sh -v YouCompleteMe
  ```
 
-欢迎各位适用以及改进，如有问题可以评论留言，一直努力打造更好用的Vim环境。
+欢迎各位使用以及改进，如有问题可以评论留言，一起努力打造更好用的Vim环境。
