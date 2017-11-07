@@ -1,0 +1,3 @@
+" 自动折叠插件 SimpylFold
+let g:SimpyFold_docstring_preview=1		" 显示折叠代码的文档字符串
+

@@ -1,0 +1,16 @@
+" 自动补全 YouCompleteMe
+" vim上的自动补全插件，注意该插件需要手动编译！！！
+" 如果使用Vundle更新了YouCompleteMe，也需要重新编译！！！
+let g:ycm_autoclose_preview_window_after_completion=1	" 完成操作之后自动补全窗口不消失
+let g:ycm_global_ycm_extra_conf = '/home/qiuyu/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>	" 使用 \g 作为转到定义的快捷键
+" Python with virtualenv support
+python3 << EOF
+import sys, vim, os
+
+ve_dir = vim.eval('$VIRTUAL_ENV')
+ve_dir in sys.path or sys.path.insert(0, ve_dir)
+activate_this = os.path.join(os.path.join(ve_dir, 'bin'), 'activate_this.py')
+
+EOF
+

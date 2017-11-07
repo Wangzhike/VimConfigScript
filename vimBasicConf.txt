@@ -1,0 +1,145 @@
+"	------	Vundle插件基本配置	------
+" 关闭vim对vi特性的兼容，vim新特性更适合我们，
+" 同时很多设置和插件依赖于vim的这些改进
+set nocompatible
+
+" 开启文件类型检测，但Vundle插件要求关闭该选项
+filetype off
+
+" 设置包括vundle和初始化相关的runtime path
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" 另一种选择，指定一个vundle安装插件的路径
+"call vundle#begin('~/some/path/here')
+
+" 让vundle管理插件版本，必须
+Plugin 'VundleVim/Vundle.vim'
+
+" 以下范例用来支持不同格式的插件安装
+" 请将安装插件的命令放在vundle#begin和vundle#end之间
+
+" Github上的插件
+" 格式为 Plugin '用户名/插件仓库名'
+
+" Github Plugin End
+
+
+" 来自 http://vim-scripts.org/vim/scripts.html 的插件
+" Plugin '插件名称' 实际上是 Plugin 'vim-scripts/插件仓库名' 只是此处的用户名可以省略
+
+" vim-scripts Plugin End
+
+
+" 有Git支持但不在github上的插件仓库
+" Plugin 'git clone 后面的地址'
+
+" Git Plugin End
+
+
+" 本地的Git仓库(例如自己的插件)
+" Plugin 'file:///+本地插件仓库绝对地址'
+
+" Local Plugin End
+
+
+" 插件在仓库的子目录中.
+" 正确指定路径用以设置runtimepath. 以下范例插件在sparkup/vim目录下
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" 安装L9，如果已经安装过这个插件，可利用以下格式避免命名冲突
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+
+" 你的所有插件需要在下面这行之前
+call vundle#end()		" 必须
+
+" 检测到文件类型后，开启缩进规则
+filetype indent on		" 必须 加载vim自带和插件相应的语法和文件类型相关的脚本
+
+" 忽略插件改变缩进，可以使用以下代替
+" filetype plugin on
+
+" 简要帮助文档
+" :PluginList       - 列出所有已配置的插件
+" :PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+" :PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+" :PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+"
+" 查阅 :h vundle 获取更多细节和wiki以及FAQ
+" 将你自己对非插件片段放在这行之后
+
+
+" 开启语法高亮
+if has("syntax")
+	syntax on
+endif
+
+" 代开屏幕左侧的行号显示
+set number
+
+" 在屏幕右下角显示未完成的指令输入
+set showcmd
+
+" 上下移动光标时，光标的上方或下方至少保留显示的行数
+set scrolloff=3
+
+" indent, eol, start 代表的意思是 缩进位置， 行结束符， 段首，
+" 这样设置可以使得backspace键在这三个特殊的位置也能进行回删动作
+set backspace=indent,eol,start
+
+" 显示匹配的括号
+set showmatch
+
+" 打开搜索高亮模式
+set hlsearch
+
+" smarttab要和后面的shiftwidth配合使用，它只作用于行首位置
+" 当smarttab开启时，在行首键入<TAB>会填充shiftwidth设定的值，
+" 在其他地方则填充tabstop设定的值
+" set smarttab
+
+" 打开自动缩进
+set autoindent
+
+" shiftwidth定义了每一次缩进对应的空格数，当你使用自动格式化(比如gq)，
+" 或者手动缩进(<<和>>)时，vim使用的数值就是这个
+set shiftwidth=4
+
+" tabstop就是<TAB>字符所代表的空格数，
+" 一般我们会用expandtab把<TAB>转变为空格符，然后键入<TAB>时就会产生
+" tabstop个空格了
+set tabstop=4
+
+" 将<TAB>符号转变为<SPACE>，也就是空格
+set expandtab
+
+" 总是把softtabstop设定成和tabstop一样的数值，这样无论是用<TAB>插入缩进
+" 还是用<BS>删除缩进，其行为总是一样的
+set softtabstop=4
+
+" list开启对于制表符(tab)，行尾空格符(trail)，行结束符(eol)等等特殊符号
+" 的回显
+"set list listchars=eol:¬,tab:▸\ ,trail:.
+
+" 代码折叠设置
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za	" Enable folding with the <space>
+
+" 支持 PEP8 风格的缩进
+au BufNewFile,BufRead *.py
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set shiftwidth=4 |
+	\ set textwidth=79 |
+	\ set autoindent |
+	\ set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2
+
+
+"	------	插件配置	------
+

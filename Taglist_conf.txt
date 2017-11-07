@@ -1,0 +1,8 @@
+" taglist 插件
+" 需要安装ctags
+let Tlist_Use_Right_Window=1	"让taglist窗口出现在Vim的右边
+let Tlist_File_Fold_Auto_Close=1	"当同时显示多个文件中的tag时，设置为1，可使taglist只显示当前文件tag，其他文件的tag都被折叠起来
+let Tlist_Exit_OnlyWindow=1	"如果taglist窗口是最后一个窗口，则退出Vim
+let Tlist_WinWidth=32 "设置窗体宽度为32，可以根据自己喜好设置
+let Tlist_Ctags_Cmd='/usr/bin/ctags'	"这里比较重要，设置ctags的位置
+
