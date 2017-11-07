@@ -63,6 +63,7 @@ function configYouCompleteMe() {
 	# 如果使用Vundle更新了YouCompleteMe，也需要重新编译！！！
 	sudo apt-get install build-essential cmake
 	sudo apt-get install python-dev python3-dev
+<<<<<<< HEAD
 }
 
 # 在安装完YouCompleteMe之后编译
@@ -71,6 +72,10 @@ function makeYouCompleteMe() {
 	cd ~/.vim/bundle/YouCompleteMe
 	./install.py --all
 	echo "编译完成！"
+=======
+	cd ~/.vim/bundle/YouCompleteMe
+	./install.py --all
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 	cd -
 }
 
@@ -158,14 +163,20 @@ plugin_dict=(
 configVimBasic 
 # 命令行参数判断
 echo "正在进行插件安装......"
+<<<<<<< HEAD
 ins_ycm=false
+=======
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 case $1 in
 	-s) # 安装指定的插件
 		for plugin in $@
 		do 
+<<<<<<< HEAD
 			if [ $plugin == YouCompleteMe ]; then
 				ins_ycm=true
 			fi
+=======
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 			${plugin_dict[$plugin]}
 		done
 		;;
@@ -173,9 +184,12 @@ case $1 in
 		# 遍历plugin_dict所有的key
 		for plugin_name in ${!plugin_dict[*]}
 		do 
+<<<<<<< HEAD
 			if [ $plugin == YouCompleteMe ]; then
 				ins_ycm=true
 			fi
+=======
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 			canINS=true
 			# 检查该key是否在命令行参数中
 			for plugin in $@
@@ -190,7 +204,10 @@ case $1 in
 		done
 		;;
     -all | *) # 全部安装
+<<<<<<< HEAD
 		ins_ycm=true
+=======
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 		# 遍历plugin_dict所有的value
 		for plugin_install in ${plugin_dict[*]}
 		do 
@@ -199,9 +216,12 @@ case $1 in
 		;;
 esac
 vim +PluginInstall +qall 
+<<<<<<< HEAD
 # 如果安装了自动补全插件YouCompleteMe，则编译该插件
 if $ins_ycm; then
 	makeYouCompleteMe
 fi
+=======
+>>>>>>> 7c111a0d7d02b7d474fab3928e5d20e11573254b
 echo "插件安装完成！"
 echo "Enjoy..."
