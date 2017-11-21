@@ -65,12 +65,20 @@ function configYouCompleteMe() {
 	sudo apt-get install python-dev python3-dev
 }
 
-# 在安装完YouCompleteMe之后编译
+# 在安装完YouCompleteMe之后编译并修改配置文件
 function makeYouCompleteMe() {
 	echo "编译自动补全插件YouCompleteMe"
 	cd ~/.vim/bundle/YouCompleteMe
 	./install.py --all
 	echo "编译完成！"
+	# 注释掉.ycm_extra_conf.py中的选项
+	cp ./third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
+	num=$(sed -n "/final_flags.remove/=" ~/.ycm_extra_conf.py)
+	sed -n "$(expr $num - 1),$(expr $num + 2) s/^/#/p" ~/.ycm_extra_conf.py
+	# 添加库所在的flags
+	num=$(sed -n "/^]/=" ~/.ycm_extra_conf.py)
+	gcc_version=$(sed -r "s/.+gcc version ([0-9\.]+).+/\1/" /proc/version)
+	sed "$num i# add by qiuyu\n'-isystem',\n'/usr/include',\n'-isystem',\n'/usr/include/x86_64-linux-gnu',\n'-isystem',\n'/usr/include/c++/$gcc_version',\n'-isystem',\n'/usr/include/c++/$gcc_version/backward',\n'-isystem',\n'/usr/include/x86_64-linux-gnu/c++/$gcc_version',\n'-isystem',\n'/usr/local/include'," ~/.ycm_extra_conf.py
 	cd -
 }
 

@@ -2,7 +2,14 @@
 " vim上的自动补全插件，注意该插件需要手动编译！！！
 " 如果使用Vundle更新了YouCompleteMe，也需要重新编译！！！
 let g:ycm_autoclose_preview_window_after_completion=1	" 完成操作之后自动补全窗口不消失
-let g:ycm_global_ycm_extra_conf = '/home/qiuyu/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" 默认情况下输入`.`,`->`,`::`之后会触发补全函数和类，但是默认情况下是不补全全局函数的，
+" 所以C语言中的printf之类的函数就无法补全。解决办法就是手动调用补全，对应的YCM函数是：
+" ycm_key_invoke_completion，将其绑定到快捷键`ctrl+a`：
+let g:ycm_key_invoke_completion = '<C-a>'	" 默认是<C-Space>，与切换输入法冲突
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif		" 离开插入模式后自动关闭预览窗口
+let g:ycm_confirm_extra_conf = 0	" 关闭加载.ycm_extra_conf.py提示
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>	" 使用 \g 作为转到定义的快捷键
 " Python with virtualenv support
 python3 << EOF
