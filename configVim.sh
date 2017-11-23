@@ -181,7 +181,7 @@ case $1 in
 		# 遍历plugin_dict所有的key
 		for plugin_name in ${!plugin_dict[*]}
 		do 
-			if [ $plugin == YouCompleteMe ]; then
+			if [ $plugin_name == YouCompleteMe ]; then
 				ins_ycm=true
 			fi
 			canINS=true
