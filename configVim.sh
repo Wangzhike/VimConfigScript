@@ -14,7 +14,7 @@ function checkVimVersion() {
 	# 最终得到vim命令对应的可执行文件对应的位置，
 	# 通过sed命令取出vim对应的版本，比如: tiny, basic等
 	vimVersion=$(echo $vimLoc | sed -r 's/.+vim\.(.+)/\1/')
-	echo "你系统VIM的版本为：$vimVersion"
+	echo -e "\033[32m你系统VIM的版本为：$vimVersion\033[0m"
 
 	if [ $vimVersion = basic ]; then
 		return 0
@@ -26,9 +26,9 @@ function checkVimVersion() {
 # vim基本配置以及vundle插件初始化
 function configVimBasic() {
 	if checkVimVersion; then
-		echo "无需升级VIM"
+		echo -e "\033[32m无需升级VIM\033[0m"
 	else
-		echo "升级VIM"
+		echo -e "\033[32m升级VIM\033[0m"
 		# 卸载vim-tiny版本
 		sudo apt-get remove vim-tiny vim-commoin
 		# 安装full版vim
@@ -38,22 +38,22 @@ function configVimBasic() {
 	sudo apt-get install git
 	# 判断vundle插件是否已经安装
 	if [ -d ~/.vim/bundle/Vundle.vim ]; then
-		echo "你已经安装了Vundle插件管理工具"
+		echo -e "\033[32m你已经安装了Vundle插件管理工具\033[0m"
 	else
-		echo "安装Vundle插件管理工具"
+		echo -e "\033[32m安装Vundle插件管理工具\033[0m"
 		# 下载vundle插件
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	fi
 	# 在$HOME目录下新建.vimrc配置文件
 	#touch $HOME/.vimrc
-	echo "配置用户的Vim配置文件.vimrc"
+	echo -e "\033[32m配置用户的Vim配置文件.vimrc\033[0m"
 	# 将vim基本配置以及vundle插件的初始化代码插入到.vimrc
 	cat ./vimBasicConf.txt > $HOME/.vimrc
 }
 
 # 安装，编译，配置自动补全插件YouCompleteMe
 function configYouCompleteMe() {
-	echo "安装自动补全插件YouCompleteMe"
+	echo -e"\033[32m安装自动补全插件YouCompleteMe\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# YouCompleteMe插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'Valloric/YouCompleteMe'" $HOME/.vimrc
@@ -67,10 +67,10 @@ function configYouCompleteMe() {
 
 # 在安装完YouCompleteMe之后编译并修改配置文件
 function makeYouCompleteMe() {
-	echo "编译自动补全插件YouCompleteMe"
+	echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
 	cd ~/.vim/bundle/YouCompleteMe
 	./install.py --all
-	echo "编译完成！"
+	echo -e "\033[32m编译完成！\033[0m"
 	# 注释掉.ycm_extra_conf.py中的选项
 	cp ./third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
 	num=$(sed -n "/final_flags.remove/=" ~/.ycm_extra_conf.py)
@@ -84,7 +84,7 @@ function makeYouCompleteMe() {
 
 # 安装，配置语法检查插件syntastic
 function configSyntastic() {
-	echo "安装语法检查插件syntastic"
+	echo -e "\033[32m安装语法检查插件syntastic\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# syntastic插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'vim-syntastic/syntastic'" $HOME/.vimrc
@@ -94,7 +94,7 @@ function configSyntastic() {
 
 # 安装，配置代码折叠插件SimpylFold
 function configSimpylFold() {
-	echo "安装代码折叠插件SimpylFold"
+	echo -e "\033[32m安装代码折叠插件SimpylFold\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# SimpylFold插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'tmhedberg/SimpylFold'" $HOME/.vimrc
@@ -104,7 +104,7 @@ function configSimpylFold() {
 
 # 安装，配置显示文件树/文件目录插件NERDTree
 function configNERDTree() {
-	echo "安装显示文件树/文件目录插件NERDTree"
+	echo -e"\033[32m安装显示文件树/文件目录插件NERDTree\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# NERDTree插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'scrooloose/nerdtree'" $HOME/.vimrc
@@ -114,7 +114,7 @@ function configNERDTree() {
 
 # 安装，配置状态栏增强插件vim-airline
 function configVimAirLine() {
-	echo "安装状态栏增强插件vim-airline"
+	echo -e "\033[32m安装状态栏增强插件vim-airline\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# vim-airline插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'vim-airline/vim-airline'" $HOME/.vimrc
@@ -131,8 +131,10 @@ function configVimAirLine() {
 	#cd ..
 	#rm -rf fonts
 	#fc-cache -vf 
-	wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+	wget https://raw.githubusercontent.com/powerline/powerline/develop/font/PowerlineSymbols.otf
 	wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+	# wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+	# wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
     mkdir -p ~/.local/share/fonts
 	mv PowerlineSymbols.otf ~/.local/share/fonts/ 
 	fc-cache -vf ~/.local/share/fonts/
@@ -142,7 +144,7 @@ function configVimAirLine() {
 
 # 安装，配置查看显示代码文件中的宏，函数，变量定义等的插件taglist
 function configTaglist() {
-	echo "安装查看显示代码文件中的宏，函数，变量定义等的插件taglist"
+	echo -e "\033[32m安装查看显示代码文件中的宏，函数，变量定义等的插件taglist\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# vim-scripts/taglist.vim插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'vim-scripts/taglist.vim'" $HOME/.vimrc
@@ -165,7 +167,7 @@ plugin_dict=(
 
 configVimBasic 
 # 命令行参数判断
-echo "正在进行插件安装......"
+echo -e "\033[32m正在进行插件安装......\033[0m"
 ins_ycm=false
 case $1 in
 	-s) # 安装指定的插件
@@ -212,5 +214,5 @@ vim +PluginInstall +qall
 if $ins_ycm; then
 	makeYouCompleteMe
 fi
-echo "插件安装完成！"
-echo "Enjoy..."
+echo -e "\033[32m插件安装完成！\033[0m"
+echo -e "\033[32mEnjoy...\033[0m"
