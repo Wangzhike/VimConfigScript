@@ -181,13 +181,14 @@ case $1 in
 		# 遍历plugin_dict所有的key
 		for plugin_name in ${!plugin_dict[*]}
 		do 
-			if [ $plugin_name == YouCompleteMe ]; then
-				ins_ycm=true
-			fi
 			canINS=true
 			# 检查该key是否在命令行参数中
 			for plugin in $@
 			do 
+				# 如果YCM在-v的参数中，则不安装YCM
+				if [ $plugin == YouCompleteMe ]; then
+					ins_ycm=false
+				fi
 				if [ $plugin_name == $plugin ]; then
 					canINS=false
 				fi
