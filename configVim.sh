@@ -104,7 +104,7 @@ function configSimpylFold() {
 
 # 安装，配置显示文件树/文件目录插件NERDTree
 function configNERDTree() {
-	echo -e"\033[32m安装显示文件树/文件目录插件NERDTree\033[0m"
+	echo -e "\033[32m安装显示文件树/文件目录插件NERDTree\033[0m"
 	# 获取安装Github插件代码的结束位置，并在该位置之前插入安装
 	# NERDTree插件的代码
 	sed -i "/^\" Github Plugin End/i\Plugin 'scrooloose/nerdtree'" $HOME/.vimrc
